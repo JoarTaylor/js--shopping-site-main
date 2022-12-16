@@ -11,7 +11,7 @@ function generateCartItems() {
     let basketArray = [];
 
     for (let i = 0; i < basket.length; i++) {
-        basketArray.push(shopData[(basket[i].ind)-1])
+        basketArray.push(shopData[(basket[i].ind)-1]);
     }
 
     let cartList = basketArray.map(cartItem => {
@@ -43,6 +43,26 @@ function generateCartItems() {
   shoppingCart.innerHTML = cartList.join('');
 }
 
+toggleDeletebtn();
+
+function toggleDeletebtn() {
+    
+let deleteAllBtn = document.createElement('button');
+deleteAllBtn.textContent = 'Empty cart';
+shoppingCart.before(deleteAllBtn)
+deleteAllBtn.addEventListener('click', removeAll);
+}
+
+
+function removeAll() {
+    basket = JSON.parse(localStorage.getItem("data"));
+    basket = [];
+    localStorage.setItem(('data'), JSON.stringify(basket));
+    generateCartItems();
+    cartCount();
+}
+
+
 cartCount();
 
 function getTotal(id) {
@@ -57,6 +77,7 @@ function getTotal(id) {
             totals = 0;
         }
         return totals;
+        
 }
 
 function deleteFromCart(id) {
@@ -64,6 +85,7 @@ function deleteFromCart(id) {
     basket.splice(index, 1);
     localStorage.setItem(('data'), JSON.stringify(basket));
     generateCartItems();
+    cartCount();
 }
 
 generateCartItems();

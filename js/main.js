@@ -6,9 +6,9 @@ let basket = JSON.parse(localStorage.getItem("data")) || [];
 
 console.log(shopData)
 
-function generateShop() {
+function generateShop(argArr = shopData) {
     
-    let productList = shopData.map((product) => {
+    let productList = argArr.map((product) => {
         const {id, title, price, description, image} = product;    
         
         getTotal(id);
@@ -43,7 +43,7 @@ function getTotal(id) {
             match = basket.find(x => x.ind == id);
         }
         if(match !== undefined) {
-        totals = match.total
+        totals = match.total;
         } else {
             totals = 0;
         }
