@@ -1,10 +1,14 @@
 let shoppingCart = document.getElementById("shopping-cart")
+let navBar = document.querySelector('.navbar');
+let cartInfoWrap = document.querySelector('.cartInfoWrapper');
 
 let basket = JSON.parse(localStorage.getItem("data")) || []
 
 const cartAmountEl = document.querySelector('.cartAmount');
 
 function generateCartItems() {
+
+    let sumTotal = 0;
 
     basket = JSON.parse(localStorage.getItem("data"));
     
@@ -18,6 +22,7 @@ function generateCartItems() {
 
         getTotal(cartItem.id);
         let partSum = Math.floor(totals * cartItem.price);
+        sumTotal += partSum;
 
         return  ` <div class="cart-item">
         <img width="100" src=${cartItem.image} alt="" />
@@ -40,6 +45,9 @@ function generateCartItems() {
         </div>
         </div>` 
     })
+   
+    cartInfoWrap.innerHTML = 'Total: ' + sumTotal + '$';
+    
   shoppingCart.innerHTML = cartList.join('');
 }
 
@@ -76,7 +84,6 @@ function getTotal(id) {
             totals = 0;
         }
         return totals;
-
 }
 
 function deleteFromCart(id) {

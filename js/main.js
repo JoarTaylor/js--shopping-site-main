@@ -1,5 +1,6 @@
 const shop = document.getElementById('shop');
 const cartAmountEl = document.querySelector('.cartAmount');
+const categorysEl = document.querySelector('.categories');
  
 let basket = JSON.parse(localStorage.getItem("data")) || [];
 
@@ -33,7 +34,6 @@ function generateShop(argArr = shopData) {
        </div>`
     })
     activeShopArray = argArr;
-    
     shop.innerHTML = productList.join('');
 }
 
@@ -49,7 +49,7 @@ shopData.map(item => categorySet.add(item.category));
 categorySet.forEach(category => {
     let categoryBtn = document.createElement('button');
     categoryBtn.textContent = category;
-    shop.before(categoryBtn)
+    categorysEl.appendChild(categoryBtn)
     
     categoryBtn.addEventListener('click', () => {
         let filteredArr = shopData.filter(prod => prod.category == category)
