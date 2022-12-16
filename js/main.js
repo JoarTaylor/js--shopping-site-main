@@ -4,40 +4,26 @@ const cartAmountEl = document.querySelector('.cartAmount');
 let basket = JSON.parse(localStorage.getItem("data")) || [];
 
 
-// Produktdatat finns i variabeln shopData (se data.js)
-
 console.log(shopData)
 
 function generateShop() {
-    // Generera alla produkter med dynamisk HTML och Array.protype.map() samt join()
-    //
-    // Använd denna markup för varje produktkort - den korresponderar mot CSS:en
-    //
     
     let productList = shopData.map((product) => {
         const {id, title, price, description, image} = product;    
-        let basket = JSON.parse(localStorage.getItem("data"));      
-        let match;
-        if(basket !== null) {
-            match = basket.find(x => x.ind == id);
-        }
-        if(match !== undefined) {
-        product.sumAdded = match.total
-        } else {
-            product.sumAdded = 0;
-        }
+        
+        getTotal(id);
         return `<div id=${id} class="item">
         <img width="220" src=${image} alt=""> 
        <div class="details">
            <h3>${title}</h3>
             <p>${description}</p>
            <div class="price-quantity">
-           <h2>${price}</h2>
+           <h2>${price} $</h2>
           <div class="buttons">
               <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
               <div id=${id} class="quantity">
              </div>
-              <div id=${id} class="quantity">${product.sumAdded}</div>
+              <div id=${id} class="quantity">${totals}</div>
              <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
          </div>
                </div>
@@ -50,6 +36,20 @@ function generateShop() {
 generateShop();
 cartCount();
 
+function getTotal(id) {
+    let basket = JSON.parse(localStorage.getItem("data"));      
+        let match;
+        if(basket !== null) {
+            match = basket.find(x => x.ind == id);
+        }
+        if(match !== undefined) {
+        totals = match.total
+        } else {
+            totals = 0;
+        }
+        return totals;
+}
+
 function cartCount() {
     basket = JSON.parse(localStorage.getItem("data")) || [];
     const totalItems = basket.reduce((sum, current) => {
@@ -58,14 +58,11 @@ function cartCount() {
     cartAmountEl.textContent = totalItems;
 }
 
-
-// Om användaren klickar på + på produkten 
 function increment(id) {
     addToCart(id);   
     cartCount();
 }
 
- // Om användaren klickar på - på produkten 
 function decrement(id) {
     removeFromCart(id);
     cartCount();
