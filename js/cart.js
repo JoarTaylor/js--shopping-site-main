@@ -46,7 +46,6 @@ function generateCartItems() {
 toggleDeletebtn();
 
 function toggleDeletebtn() {
-    
 let deleteAllBtn = document.createElement('button');
 deleteAllBtn.textContent = 'Empty cart';
 shoppingCart.before(deleteAllBtn)
@@ -77,7 +76,7 @@ function getTotal(id) {
             totals = 0;
         }
         return totals;
-        
+
 }
 
 function deleteFromCart(id) {

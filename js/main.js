@@ -6,6 +6,8 @@ let basket = JSON.parse(localStorage.getItem("data")) || [];
 
 console.log(shopData)
 
+let activeShopArray = [];
+
 function generateShop(argArr = shopData) {
     
     let productList = argArr.map((product) => {
@@ -30,11 +32,32 @@ function generateShop(argArr = shopData) {
            </div>
        </div>`
     })
+    activeShopArray = argArr;
+    
     shop.innerHTML = productList.join('');
 }
 
 generateShop();
 cartCount();
+
+filterByCategory()
+
+function filterByCategory() {
+let categorySet = new Set();
+shopData.map(item => categorySet.add(item.category));
+
+categorySet.forEach(category => {
+    let categoryBtn = document.createElement('button');
+    categoryBtn.textContent = category;
+    shop.before(categoryBtn)
+    
+    categoryBtn.addEventListener('click', () => {
+        let filteredArr = shopData.filter(prod => prod.category == category)
+        generateShop(filteredArr);
+    })
+})
+}
+
 
 function getTotal(id) {
     let basket = JSON.parse(localStorage.getItem("data"));      
@@ -81,7 +104,8 @@ function addToCart(id) {
     basket.push(basketItem);
     }
     localStorage.setItem(('data'), JSON.stringify(basket));
-    generateShop()
+    //check if filtering and stay on filtered page
+    generateShop(activeShopArray)
 }
 
 function removeFromCart(id) {
@@ -94,5 +118,6 @@ function removeFromCart(id) {
         }
     }  
     localStorage.setItem(('data'), JSON.stringify(basket));
-    generateShop()
+    //check if filtering and stay on filtered page
+    generateShop(activeShopArray)
 }
