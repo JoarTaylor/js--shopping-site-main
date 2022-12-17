@@ -43,8 +43,18 @@ cartCount();
 filterByCategory()
 
 function filterByCategory() {
-let categorySet = new Set();
-shopData.map(item => categorySet.add(item.category));
+/*     let categorySet = shopData.reduce((startArr, current) => {
+    if(!startArr.includes(current.category)) {
+        startArr.push(current.category)
+    }
+    return startArr
+}, []) */
+
+////eller detta sett
+let categorySet = new Set(shopData.map(item => (item.category)));
+console.log(categorySet)
+
+
 
 categorySet.forEach(category => {
     let categoryBtn = document.createElement('button');
@@ -56,6 +66,8 @@ categorySet.forEach(category => {
         generateShop(filteredArr);
     })
 })
+
+
 }
 
 
