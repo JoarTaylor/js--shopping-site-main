@@ -59,6 +59,7 @@ console.log(categorySet)
 categorySet.forEach(category => {
     let categoryBtn = document.createElement('button');
     categoryBtn.textContent = category;
+    categoryBtn.classList.add('btnCategory')
     categorysEl.appendChild(categoryBtn)
     
     categoryBtn.addEventListener('click', () => {

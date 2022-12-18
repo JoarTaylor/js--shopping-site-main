@@ -71,18 +71,6 @@
     padding: 0 2rem;
   }
   
-  @media (max-width: 900px) {
-    .shop {
-      grid-template-columns: repeat(2, 223px);
-    }
-  }
-  
-  @media (max-width: 500px) {
-    .shop {
-      grid-template-columns: repeat(1, 223px);
-    }
-  }
-  
   .item {
     border: 2px solid #212529;
     display: flex;
@@ -137,6 +125,11 @@
    outline: 0;
    border: 0;
    color: #fff;
+  }
+
+  .btnCategory:hover {
+    text-decoration: underline 2px white;
+    cursor: pointer;
   }
 
   .hide {
@@ -213,4 +206,14 @@
     text-align: center;
   }
   
+  @media (max-width: 900px) {
+    .shop {
+      grid-template-columns: repeat(2, 223px);
+    }
+  }
   
+  @media (max-width: 500px) {
+    .shop {
+      grid-template-columns: repeat(1, 223px);
+    }
+  }
