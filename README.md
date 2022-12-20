@@ -1,6 +1,19 @@
 github pages: https://joartaylor.github.io/js--shopping-site-main/
+Made by: Joar Taylor
 
 
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////
+Instructions for this project below: 
 
 # Uppgift JS Shoppingsida 🛒
 
