@@ -56,7 +56,8 @@ toggleDeletebtn();
 function toggleDeletebtn() {
 let deleteAllBtn = document.createElement('button');
 deleteAllBtn.textContent = 'Empty cart';
-shoppingCart.before(deleteAllBtn)
+deleteAllBtn.classList.add('delete-all-btn');
+cartInfoWrap.after(deleteAllBtn)
 deleteAllBtn.addEventListener('click', removeAll);
 }
 

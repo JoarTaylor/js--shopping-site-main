@@ -128,8 +128,16 @@
   }
 
   .btnCategory:hover {
-    text-decoration: underline 2px white;
+    /* text-decoration: underline 2px white; */
+    border-bottom: 2px solid white;
     cursor: pointer;
+  }
+
+  .delete-all-btn {
+    margin: 2rem;
+    padding: 1rem;
+    font-size: large;
+    width: 10%;
   }
 
   .hide {

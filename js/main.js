@@ -117,7 +117,7 @@ function addToCart(id) {
     basket.push(basketItem);
     }
     localStorage.setItem(('data'), JSON.stringify(basket));
-    //check if filtering and stay on filtered page
+  
     generateShop(activeShopArray)
 }
 
@@ -131,6 +131,6 @@ function removeFromCart(id) {
         }
     }  
     localStorage.setItem(('data'), JSON.stringify(basket));
-    //check if filtering and stay on filtered page
+
     generateShop(activeShopArray)
 }
