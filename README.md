@@ -1,3 +1,7 @@
+github pages: https://joartaylor.github.io/js--shopping-site-main/
+
+
+
 # Uppgift JS Shoppingsida 🛒
 
 
